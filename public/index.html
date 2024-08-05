@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>p5MediaPipeHands Image Classification</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    #status {
+      font-weight: bold;
+      color: green;
+    }
+
+    #notifications {
+      font-style: italic;
+      color: blue;
+    }
+
+    #topic {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: red;
+    }
+
+    #score {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: purple;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      window.socket = io();
+
+      socket.on('connected', (message) => {
+        console.log(message);
+        document.getElementById('status').innerText = message;
+      });
+
+      socket.on('notification', (message) => {
+        console.log(message);
+        document.getElementById('notifications').innerText = message;
+      });
+
+      socket.on('topic', (message) => {
+        console.log(message);
+        document.getElementById('topic').innerText = message;
+      });
+
+      socket.on('score1', (message) => {
+        console.log(message);
+        document.getElementById('score1').innerText = message;
+      });
+      socket.on('score2', (message) => {
+        console.log(message);
+        document.getElementById('score2').innerText = message;
+      });
+
+      socket.on('error', (message) => {
+        console.log(message);
+        document.getElementById('status').innerText = message;
+      });
+      socket.on('winner', (message) => {
+        console.log(message);
+        document.getElementById('winner').innerText = message;
+      });
+
+      soket.on('classification', (data) =>{
+        document.getElementById('data').innerText = data.name
+      })
+    });
+  </script>
+</head>
+<body>
+  <h1>Paint judging</h1>
+  <p id="status">Not connected</p>
+  <p id="notifications"></p>
+  <p id="topic"></p>
+  <p id="message"></p>
+  <p id="score1"></p>
+  <p id="score2"></p>
+  <p id="winner"></p>
+  <p id="data"></p>
+  
+  <!--<div id ='score'></div> -->
+
+  <button id="webcamButton">ENABLE WEBCAM</button>
+  <div style="position: relative;">
+    <video id="webcam" style="position:absolute;left:0px;top:0px;width:100%;height:auto" autoplay playsinline></video>
+    <div id="canvas" style="position:absolute;left:0px;top:0px"></div>
+  </div>
+
+  <!-- include js libraries -->
+  <script src="./js/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="./js/hands.js" crossorigin="anonymous"></script>
+  <script src="./js/p5.js"></script>
+  <script src="./js/sketch.js"></script>
+  <script type="module" src="./js/script.js"></script>
+</body>
+</html>
