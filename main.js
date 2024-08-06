@@ -24,10 +24,10 @@ io.on('connection', (socket) => {
     connectedClients++;
     console.log(`A client connected with socket.id: ${socket.id}`);
 
-    if (connectedClients === 1) {
+    if (client_id1 === '') {
       client_id1 = socket.id;
       socket.emit('connected', 'You are Player 1');
-    } else if (connectedClients === 2) {
+    } else if (client_id2 === '') {
       client_id2 = socket.id;
       socket.emit('connected', 'You are Player 2');
       currentTopic = topics[Math.floor(Math.random() * topics.length)];
@@ -70,8 +70,13 @@ io.on('connection', (socket) => {
       connectedClients--;
       console.log(`A client disconnected with socket.id: ${socket.id}`);
       socket.broadcast.emit('notification', 'A client has disconnected');
+
       if (socket.id === client_id1) {
-        client_id1 = '';
+        client_id1 = client_id2;
+        client_id2 = '';
+        if (client_id1 !== '') {
+          io.to(client_id1).emit('connected', 'You are Player 1');
+        }
       } else if (socket.id === client_id2) {
         client_id2 = '';
       }
