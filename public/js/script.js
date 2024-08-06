@@ -10,7 +10,7 @@
 // limitations under the License.
 // import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0";
 import { ImageClassifier, FilesetResolver } from "./vision_bundle.js";
-document.getElementById("message").innerHTML = "Loading model...";
+//document.getElementById("message").innerHTML = "Loading model...";
 let imageClassifier = undefined;
 let classificationResult = undefined;
 let runningMode = "IMAGE";
@@ -34,7 +34,7 @@ const createImageClassifier = async () => {
 }
 
 // Show demo section now model is ready to use.
-document.getElementById("message").innerHTML = "Loading model...done.";
+//document.getElementById("message").innerHTML = "Loading model...done.";
 
 createImageClassifier();
 /********************************************************************

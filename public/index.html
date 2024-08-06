@@ -7,19 +7,19 @@
   <style>
     #status {
       font-weight: bold;
-      color: rgba(0, 0, 255, 0.692);
+      color: rgba(0, 51, 128, 0.534);
     }
 
     #topic {
       font-size: 1.5em;
       font-weight: bold;
-      color: rgb(255, 145, 0);
+      color: rgba(255, 145, 0, 0.795);
     }
 
-    #winner {
+    #score {
       font-size: 2.0em;
       font-weight: bold;
-      color: red;
+      color: purple;
     }
   </style>
   <script>
@@ -31,10 +31,10 @@
         document.getElementById('status').innerText = message;
       });
 
-      socket.on('notification', (message) => {
+      /*socket.on('notification', (message) => {
         console.log(message);
         document.getElementById('notifications').innerText = message;
-      });
+      });*/
 
       socket.on('topic', (message) => {
         console.log(message);
@@ -65,11 +65,13 @@
     });
   </script>
 </head>
-<body bgcolor = "#f8f8ff">
+<body bgcolor="#f8f8ff">
   <h1>Paint judging🎨</h1>
-  <p id= "status">Not connected</p>
+  <p id="status">Not connected</p>
   <p id="notifications"></p>
   <p id="topic"></p>
+  <p id="message"></p>
+  <p id="score1"></p>
   <p id="score2"></p>
   <p id="winner"></p>
   <p id="data"></p>
